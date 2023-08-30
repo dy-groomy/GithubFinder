@@ -2,13 +2,19 @@
 <html>
 <head>
   <title>GitHub Finder</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="./styles/main.css">
+  <link rel="stylesheet" type="text/css" href="./styles/profile.css">
+  <link rel="stylesheet" type="text/css" href="./styles/repos.css">
   <script defer type="module" src="./src/main.js"></script>
 </head>
 <body>
   <input type="text" id="userName" placeholder="Enter GitHub username">
   <button id="findBtn">Find User</button>
-  <div id="profile"></div>
+  <div id="profile">
+    <div class = 'profileNumber'></div>
+    <div class = 'profileList'></div>
+    <button class="profileLink"></button>
+  </div>
   <div id="repos"></div>
   <div id="spinner" class="spinner" style="display:none;"></div>
 </body>

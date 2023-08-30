@@ -4,52 +4,28 @@ export function showProfile(data) {
 
   const profileImg = document.createElement('img');
   profileImg.src = data.avatar_url;
-  profileImg.alt ='avatar';
   profileImg.classList.add('profileImg');
+  profileImg.alt = 'avatar'
   profile.appendChild(profileImg);
 
-  const userName = document.createElement('div');
-  userName.textContent = data.login;
-  userName.classList.add('userName');
-  profile.appendChild(userName);
+  appendToContainer(profile,'loginId', false, data.login);  
+  appendToContainer(profile,'profileUrl', false, 'https://github.com/'+data.login);
 
-  const url = document.createElement('div');
-  url.textContent = 'https://github.com/'+ data.login;  
-  url.classList.add('url');
-  profile.appendChild(url);
 
-  if (data.twitter_username)
-  {
-    const twitName = document.createElement('div');
-    twitName.textContent = data.twitter_username;  
-    twitName.classList.add('twitterUsername');
-    profile.appendChild(twitName);
-  }
+  appendToContainer(profile,'profileNumber', true);
+  const profileNumber = document.getElementsByClassName('profileNumber')[0];
+  appendToContainer(profileNumber,'publicRepos',false, data.public_repos);
+  appendToContainer(profileNumber,'publicGists',false, data.public_gists);
+  appendToContainer(profileNumber,'following',false, data.following);  
+  appendToContainer(profileNumber,'followers',false, data.followers);
 
-  if (data.blog)
-  {
-    const blog = document.createElement('div');
-    blog.textContent = data.blog;  
-    blog.classList.add('blog');
-    profile.appendChild(blog);
-  }
-
-  if (data.company)
-  {
-    const company = document.createElement('div');
-    company.textContent = data.company;  
-    company.classList.add('company');
-    profile.appendChild(company);
-  }
-
-  if (data.name)
-  {
-    const name = document.createElement('div');
-    name.textContent = data.name;  
-    name.classList.add('name');
-    profile.appendChild(name);
-  }
-
+  appendToContainer(profile,'profileList', true);
+  const profileList = document.getElementsByClassName('profileList')[0];
+  appendToContainer(profileList,'userName',false, data.name);
+  appendToContainer(profileList,'company',false, data.company);
+  appendToContainer(profileList,'blog',false, data.blog);
+  appendToContainer(profileList,'location',false, data.location);
+  appendToContainer(profileList,'createDate',false, data.created_at);
 
 }
 
@@ -59,4 +35,12 @@ export function showRepos(data) {
       output += `<p>${repo.name}</p>`;
   });
   data.innerHTML = output;
+}
+
+/** */
+function appendToContainer(container, className, isContainer, data){
+  const appendingData = document.createElement('div');
+  if (!isContainer) appendingData.textContent = className + ' ' +data;
+  appendingData.classList.add(className);
+  container.appendChild(appendingData);  
 }
