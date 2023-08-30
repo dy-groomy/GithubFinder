@@ -3,23 +3,13 @@
 <head>
   <title>GitHub Finder</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <script defer src="script.js"></script>
+  <script defer type="module" src="./src/main.js"></script>
 </head>
 <body>
-
-  <h1>GitHub Finder</h1>
-  <input type="text" id="username" placeholder="Enter GitHub username">
-  <button onclick="searchUser()">Search</button>
-
-  <!-- Spinner -->
+  <input type="text" id="userName" placeholder="Enter GitHub username">
+  <button id="findBtn">Find User</button>
+  <div id="profile"></div>
+  <div id="repos"></div>
   <div id="spinner" class="spinner" style="display:none;"></div>
-
-  <!-- User Info -->
-  <div id="user-info"></div>
-
-  <!-- Contribution Graph -->
-  <div id="contribution-graph"></div>
-
-
 </body>
 </html>
