@@ -2,30 +2,26 @@ export function showProfile(data) {
 
   const profile = document.getElementById('profile');
 
-  const profileImg = document.createElement('img');
-  profileImg.src = data.avatar_url;
-  profileImg.classList.add('profileImg');
-  profileImg.alt = 'avatar'
-  profile.appendChild(profileImg);
+  appendImgToContainer(profile,'profileImg',data.avatar_url,'avatar');
 
-  appendToContainer(profile,'loginId', false, data.login);  
-  appendToContainer(profile,'profileUrl', false, 'https://github.com/'+data.login);
+  appendDivToContainer(profile,'loginId', false, data.login);  
+  appendDivToContainer(profile,'profileUrl', false, 'https://github.com/'+data.login);
 
 
-  appendToContainer(profile,'profileNumber', true);
+  appendDivToContainer(profile,'profileNumber', true);
   const profileNumber = document.getElementsByClassName('profileNumber')[0];
-  appendToContainer(profileNumber,'publicRepos',false, data.public_repos);
-  appendToContainer(profileNumber,'publicGists',false, data.public_gists);
-  appendToContainer(profileNumber,'following',false, data.following);  
-  appendToContainer(profileNumber,'followers',false, data.followers);
+  appendDivToContainer(profileNumber,'publicRepos numberBlock',false, data.public_repos);
+  appendDivToContainer(profileNumber,'publicGists numberBlock',false, data.public_gists);
+  appendDivToContainer(profileNumber,'following numberBlock',false, data.following);  
+  appendDivToContainer(profileNumber,'followers numberBlock',false, data.followers);
 
-  appendToContainer(profile,'profileList', true);
+  appendDivToContainer(profile,'profileList', true);
   const profileList = document.getElementsByClassName('profileList')[0];
-  appendToContainer(profileList,'userName',false, data.name);
-  appendToContainer(profileList,'company',false, data.company);
-  appendToContainer(profileList,'blog',false, data.blog);
-  appendToContainer(profileList,'location',false, data.location);
-  appendToContainer(profileList,'createDate',false, data.created_at);
+  appendDivToContainer(profileList,'userName',false, data.name);
+  appendDivToContainer(profileList,'company',false, data.company);
+  appendDivToContainer(profileList,'blog',false, data.blog);
+  appendDivToContainer(profileList,'location',false, data.location);
+  appendDivToContainer(profileList,'createDate',false, data.created_at);
 
 }
 
@@ -38,9 +34,18 @@ export function showRepos(data) {
 }
 
 /** */
-function appendToContainer(container, className, isContainer, data){
+function appendDivToContainer(container, className, isContainer, data){
   const appendingData = document.createElement('div');
-  if (!isContainer) appendingData.textContent = className + ' ' +data;
-  appendingData.classList.add(className);
+  if (!isContainer) appendingData.textContent = data;
+  const listOfClass = className.split(' ')
+  listOfClass.forEach(itm=>appendingData.classList.add(itm));
   container.appendChild(appendingData);  
+}
+
+function appendImgToContainer(container, className, src, alt){
+  const appendingData = document.createElement('img');
+  appendingData.src = src;
+  appendingData.alt = alt;
+  appendingData.classList.add(className);
+  container.appendChild(appendingData);
 }
