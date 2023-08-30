@@ -17,12 +17,15 @@ export function showProfile(data) {
 
   appendDivToContainer(profile,'profileList', true);
   const profileList = document.getElementsByClassName('profileList')[0];
-  appendDivToContainer(profileList,'userName',false, data.name);
-  appendDivToContainer(profileList,'company',false, data.company);
-  appendDivToContainer(profileList,'blog',false, data.blog);
-  appendDivToContainer(profileList,'location',false, data.location);
-  appendDivToContainer(profileList,'createDate',false, data.created_at);
+  appendDivToContainer(profileList,'userName listBlock',false, data.name);
+  appendDivToContainer(profileList,'company listBlock',false, data.company);
+  appendDivToContainer(profileList,'blog listBlock',false, data.blog);
+  appendDivToContainer(profileList,'location listBlock',false, data.location);
+  appendDivToContainer(profileList,'createDate listBlock',false, data.created_at);
 
+  const date = document.getElementsByClassName('createDate')[0];
+  const dateStr = date.textContent.split('T');
+  date.textContent = dateStr[0];
 }
 
 export function showRepos(data) {
@@ -46,6 +49,7 @@ function appendImgToContainer(container, className, src, alt){
   const appendingData = document.createElement('img');
   appendingData.src = src;
   appendingData.alt = alt;
-  appendingData.classList.add(className);
+  const listOfClass = className.split(' ')
+  listOfClass.forEach(itm=>appendingData.classList.add(itm));
   container.appendChild(appendingData);
 }
