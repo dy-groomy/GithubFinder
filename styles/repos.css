@@ -1,0 +1,55 @@
+#repos {
+  width: 1000px;
+  padding: 20px;
+  border-radius: 5px;
+  top: 570px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#repos .reposContainer{
+  display: flex;
+  width: 100%;
+  border-radius: 5px;
+  padding: 0.5em;
+  justify-content: space-between;
+  align-items: center;  
+  margin: 1em;
+  padding: 0.5em;
+}
+
+#repos .reposContainer >div{
+  font-size: 25px;
+  position: relative;
+}
+
+#repos .reposContainer .reposContent{
+  position: absolute;  
+}
+
+#repos .reposContainer .reposName{
+  left: 10px;
+}
+#repos .reposContainer .reposLinkBtn{
+  left: 500px;
+}
+#repos .reposContainer .stars{
+  left: 600px;
+}
+#repos .reposContainer .watchers{
+  left: 750px;
+}
+#repos .reposContainer .forks{
+  left: 900px;
+}
+
+#repos .reposContainer .stars:before{
+  content: 'stars:';
+}
+#repos .reposContainer .watchers:before{
+  content: 'watchers:';
+}
+#repos .reposContainer .forks:before{
+  content: 'forks:';
+}

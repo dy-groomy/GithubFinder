@@ -1,5 +1,5 @@
 import {User} from './user.js';
-import {showProfile, showRepos, link} from './functions.js';
+import {showProfile, showRepos} from './functions.js';
 
 const findBtn = document.getElementById('findBtn');
 
@@ -30,17 +30,5 @@ findBtn.onclick = async function displayUser() {
 
   /**profile요소 생성 */
   showProfile(data.profile);
-  
-  /**프로필 링크 버튼 생성 */
-  const urlLinkBtn = document.getElementsByClassName('profileLinkBtn')[0];
-  urlLinkBtn.addEventListener('click', async()=>{
-    const urlLink = document.getElementsByClassName('urlLink')[0].textContent;
-    link(urlLink);
-  }
-  );
-
-  
-
-
-  console.log(data.profile);
+  showRepos(data.repos);
 }

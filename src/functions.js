@@ -4,17 +4,18 @@ export function showProfile(data) {
 
   appendImgToContainer(profile,'profileImg',data.avatar_url,'avatar');
 
-
-  appendLinkButtonToContainer(profile, 'profileLinkBtn button','View Profile');
-  appendDivToContainer(profile, 'urlLink invisible',false,'https://github.com/'+data.login);
+  /** profile link button 생성 */
+  appendLinkButtonToContainer(profile, 'profileLinkBtn button','View Profile','https://www.github.com/'+data.login);
   
+  /** Repos수, Gist수, Following수, Followers수 생성 */
   appendDivToContainer(profile,'profileNumber', true);
   const profileNumber = document.getElementsByClassName('profileNumber')[0];
   appendDivToContainer(profileNumber,'publicRepos numberBlock',false, data.public_repos);
   appendDivToContainer(profileNumber,'publicGists numberBlock',false, data.public_gists);
   appendDivToContainer(profileNumber,'following numberBlock',false, data.following);  
   appendDivToContainer(profileNumber,'followers numberBlock',false, data.followers);
-
+  
+  /** 이름, 직장, 블로그주소, 위치, 가입 날짜 생성 */
   appendDivToContainer(profile,'profileList', true);
   const profileList = document.getElementsByClassName('profileList')[0];
   appendDivToContainer(profileList,'userName listBlock',false, data.name);
@@ -23,28 +24,52 @@ export function showProfile(data) {
   appendDivToContainer(profileList,'location listBlock',false, data.location);
   appendDivToContainer(profileList,'createDate listBlock',false, data.created_at);
 
+  /** 가입 날짜만 나오게 설정 */
   const date = document.getElementsByClassName('createDate')[0];
   const dateStr = date.textContent.split('T');
   date.textContent = dateStr[0];
 }
 
-export function showRepos(data) {
-  let output = "<h2>Recent Repositories</h2>";
-  data.slice(0, 5).forEach(repo => {
-      output += `<p>${repo.name}</p>`;
-  });
-  data.innerHTML = output;
+export function showRepos(data) { 
+  data.sort((a,b) => {return new Date(b.created_at)-new Date (a.created_at);})
+  const latestRepos = data.slice(0,5);
+  const repository = document.getElementById('repos');
+  const userId = document.getElementById('userId').value;  
+  latestRepos.forEach(itm => {
+    let eachRepos = appendDivToContainer(repository,'reposContainer',true);
+    appendDivToContainer(eachRepos,'reposName reposContent',false,itm.name);
+    appendLinkButtonToContainer(eachRepos,'reposLinkBtn button reposContent','Link','https://www.github.com/'+userId+'/'+itm.name);
+    appendDivToContainer(eachRepos,'stars reposContent',false,itm.stargazers_count);
+    appendDivToContainer(eachRepos,'watchers reposContent',false,itm.watchers);
+    appendDivToContainer(eachRepos,'forks reposContent',false,itm.forks_count);
+  }    
+  );
+
 }
 
-/** */
+/**
+ * 
+ * @param {*} container 어디에 
+ * @param {*} className : 어떤 class들을 가질 것인가, space로 구분
+ * @param {*} isContainer : container인가
+ * @param {*} data : textContent에 어떤 값을 가질 것인가
+ */
 function appendDivToContainer(container, className, isContainer, data){
   const appendingData = document.createElement('div');
   if (!isContainer) appendingData.textContent = data;
   const listOfClass = className.split(' ')
   listOfClass.forEach(itm=>appendingData.classList.add(itm));
-  container.appendChild(appendingData);  
+  container.appendChild(appendingData);
+  return appendingData;
 }
 
+/**
+ * 
+ * @param {*} container : 어디에 붙일것인가
+ * @param {*} className : 어떤 class들을 가질 것인가, space로 구분
+ * @param {*} src : 이미지 source
+ * @param {*} alt : 이미지 대체 문구
+ */
 function appendImgToContainer(container, className, src, alt){
   const appendingData = document.createElement('img');
   appendingData.src = src;
@@ -54,20 +79,19 @@ function appendImgToContainer(container, className, src, alt){
   container.appendChild(appendingData);
 }
 
-function appendLinkButtonToContainer(container, className, btnText,url){
+/**
+ * 
+ * @param {*} container : 어디에 붙일것인가
+ * @param {*} className : 어떤 class들을 가질 것인가, space로 구분
+ * @param {*} btnText : 버튼 텍스트
+ * @param {*} url : 링크 어디로 갈것인가
+ */
+function appendLinkButtonToContainer(container, className, btnText, url){
   const appendingData = document.createElement('input');
   const listOfClass = className.split(' ')
   listOfClass.forEach(itm=>appendingData.classList.add(itm));
   appendingData.value = btnText;
   appendingData.type = 'button';
-  appendingData.onclick = 'https//www.naver.com';
+  appendingData.addEventListener('click', async()=>{window.open(url);});
   container.appendChild(appendingData);
-}
-
-/**
- * 
- * @param {*} url url
- */
-export function link(url){
-  window.open(url);
 }
