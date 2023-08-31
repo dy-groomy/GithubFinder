@@ -4,7 +4,7 @@ import {showProfile, showRepos} from './functions.js';
 const findBtn = document.getElementById('findBtn');
 
 findBtn.onclick = async function displayUser() {
-
+    
   /**ID 입력 내역 가져오기 */
   const userId = document.getElementById('userId').value;
   if(userId==''){

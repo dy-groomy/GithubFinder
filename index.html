@@ -8,14 +8,16 @@
   <script defer type="module" src="./src/main.js"></script>
 </head>
 <body>
-  <input type="text" id="userId" placeholder="Enter GitHub username">
-  <button id="findBtn">Find User</button>
+  <div class="navbar">
+    <div class="title">Github Finder</div>
+    <input type="text" id="userId" placeholder="Enter GitHub username">
+    <button id="findBtn">Find User</button>
+  </div>
   <div id="profile">
     <div class = 'profileNumber'></div>
     <div class = 'profileList'></div>
     <button class="profileLink"></button>
   </div>
   <div id="repos"></div>
-  <div id="spinner" class="spinner" style="display:none;"></div>
 </body>
 </html>

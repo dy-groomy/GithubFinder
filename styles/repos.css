@@ -19,6 +19,13 @@
   padding: 0.5em;
 }
 
+#repos .latestReposTitle{
+  font-size: 50px;
+  font-weight: bold;
+  left: 10px;
+  padding-bottom: 20px;
+}
+
 #repos .reposContainer >div{
   font-size: 25px;
   position: relative;
@@ -29,7 +36,7 @@
 }
 
 #repos .reposContainer .reposName{
-  left: 10px;
+  left: 50px;
 }
 #repos .reposContainer .reposLinkBtn{
   left: 500px;

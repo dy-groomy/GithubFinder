@@ -31,10 +31,20 @@ export function showProfile(data) {
 }
 
 export function showRepos(data) { 
+
+  /**생성 날짜 기준으로 repository 정렬 */
   data.sort((a,b) => {return new Date(b.created_at)-new Date (a.created_at);})
+  /**최근 repository 선택 */
   const latestRepos = data.slice(0,5);
+  /**respository element 선택 */
   const repository = document.getElementById('repos');
+
+  /**Latest Repository 문구 추가 */
+  appendDivToContainer(repository,'latestReposTitle',false,'Latest Repository');
+  /**url link를 위한 id 선택 */
   const userId = document.getElementById('userId').value;  
+
+  /**repository container에 각 repository추가 */
   latestRepos.forEach(itm => {
     let eachRepos = appendDivToContainer(repository,'reposContainer',true);
     appendDivToContainer(eachRepos,'reposName reposContent',false,itm.name);

@@ -1,22 +1,36 @@
-/* Spinner Styles */
-.spinner {
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border-top-color: #333;
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .invisible{
   display: none;
+}
+
+.navbar {
+  display:flex;
+  align-items: center;
+  padding: 30px;
+  width: 97%;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+  position: relative;
+}
+
+.navbar .title{
+  position: absolute;
+  margin: 5px;
+  font-size: 3em;
+  font-weight: bold;
+  top: 28px;
+  left: 10px;
+}
+
+#userId {
+  position: absolute;
+  left: 500px;
+}
+
+#findBtn{
+  position: absolute;
+  left: 700px;
 }
