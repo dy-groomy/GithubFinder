@@ -1,9 +1,95 @@
 #profile {
-  display: flex;
   width: 100%;
   padding: 20px;
   border-radius: 5px;
   position: relative;
   top: 70px;
+  position: relative;
 }
 
+.profileLinkBtn{
+  position: absolute;
+  top: 430px;
+  left: 160px;
+}
+
+.profileList {
+  position: absolute;
+  display: flex;
+  top: 80px;
+  left: 460px;
+  flex-direction: column;
+}
+.profileList .listBlock{
+  font-size: 25px;
+  padding: 0.5em;
+}
+.profileList .userName::before{
+  content: 'Name:   ';
+}
+.profileList .company::before{
+  content: 'Company:    ';
+}
+.profileList .blog::before{
+  content: 'Blog:   ';
+}
+.profileList .location::before{
+  content: 'Location:   ';
+}
+.profileList .createDate::before{
+  content: 'Member Since:   ';
+}
+
+
+
+.profileNumber{
+  position: absolute;
+  display: flex;
+  top: 10px;
+  left: 460px;
+  width: 500px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profileNumber .numberBlock{
+  color: white;
+  padding: 0.5em;
+  border-radius: 0.2em;
+}
+
+.profileNumber .publicRepos::before{
+  content: 'Public Repos:';
+}
+.profileNumber .publicGists::before{
+  content: 'Public Gists:';
+}
+.profileNumber .following::before{
+  content: 'Following:';
+}
+.profileNumber .followers::before{
+  content: 'Followers:';
+}
+
+.profileNumber .publicRepos{
+  background-color: lightblue;
+}
+.profileNumber .publicGists{
+  background-color: lightgray;
+}
+.profileNumber .following{
+  background-color: lightgreen;
+}
+.profileNumber .followers{
+  background-color: lightcoral;
+}
+
+
+.profileImg{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 400px;
+  width: 400px;
+  object-fit: contain;  
+}

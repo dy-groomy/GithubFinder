@@ -4,10 +4,10 @@ export function showProfile(data) {
 
   appendImgToContainer(profile,'profileImg',data.avatar_url,'avatar');
 
-  appendDivToContainer(profile,'loginId', false, data.login);  
-  appendDivToContainer(profile,'profileUrl', false, 'https://github.com/'+data.login);
 
-
+  appendLinkButtonToContainer(profile, 'profileLinkBtn button','View Profile');
+  appendDivToContainer(profile, 'urlLink invisible',false,'https://github.com/'+data.login);
+  
   appendDivToContainer(profile,'profileNumber', true);
   const profileNumber = document.getElementsByClassName('profileNumber')[0];
   appendDivToContainer(profileNumber,'publicRepos numberBlock',false, data.public_repos);
@@ -52,4 +52,22 @@ function appendImgToContainer(container, className, src, alt){
   const listOfClass = className.split(' ')
   listOfClass.forEach(itm=>appendingData.classList.add(itm));
   container.appendChild(appendingData);
+}
+
+function appendLinkButtonToContainer(container, className, btnText,url){
+  const appendingData = document.createElement('input');
+  const listOfClass = className.split(' ')
+  listOfClass.forEach(itm=>appendingData.classList.add(itm));
+  appendingData.value = btnText;
+  appendingData.type = 'button';
+  appendingData.onclick = 'https//www.naver.com';
+  container.appendChild(appendingData);
+}
+
+/**
+ * 
+ * @param {*} url url
+ */
+export function link(url){
+  window.open(url);
 }
