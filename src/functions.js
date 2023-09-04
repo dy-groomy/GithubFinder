@@ -102,6 +102,8 @@ function appendLinkButtonToContainer(container, className, btnText, url){
   listOfClass.forEach(itm=>appendingData.classList.add(itm));
   appendingData.value = btnText;
   appendingData.type = 'button';
-  appendingData.addEventListener('click', async()=>{window.open(url);});
+  appendingData.onclick = (event) => {window.open(url);};
+  appendingData.onclick = window.open(url);
+  // appendingData.addEventListener('click', async()=>{window.open(url);});
   container.appendChild(appendingData);
 }
